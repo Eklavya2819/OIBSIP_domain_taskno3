@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eklavya | Pro Converter</title>
+    <style>
+        :root { --accent: #ff6b00; --bg: #0a0a0a; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        
+        .calc-card { background: #1a1a1a; padding: 50px; border-radius: 30px; border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.5); width: 400px; text-align: center; }
+        h2 { color: var(--accent); letter-spacing: 2px; margin-bottom: 30px; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { color: #888; font-size: 12px; text-transform: uppercase; }
+        input, select { width: 100%; padding: 15px; background: #000; border: 1px solid #444; color: white; border-radius: 10px; margin-top: 5px; outline: none; }
+        
+        #btn { background: var(--accent); border: none; width: 100%; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        #btn:hover { box-shadow: 0 0 20px var(--accent); transform: scale(1.02); }
+
+        .result-box { margin-top: 30px; padding: 20px; background: #000; border-radius: 10px; border-left: 5px solid var(--accent); }
+        #resultText { font-size: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="calc-card">
+    <h2>TEMP CONVERTER</h2>
+    <div class="input-group">
+        <label>Degree</label>
+        <input type="number" id="inputValue" placeholder="Enter value...">
+    </div>
+    <div class="input-group">
+        <label>Type</label>
+        <select id="unitType">
+            <option value="C">Celsius to Fahrenheit</option>
+            <option value="F">Fahrenheit to Celsius</option>
+        </select>
+    </div>
+    <button id="btn" onclick="convert()">CONVERT NOW</button>
+
+    <div class="result-box">
+        <label>Result</label>
+        <div id="resultText">--</div>
+    </div>
+</div>
+
+<script>
+    function convert() {
+        const val = parseFloat(document.getElementById('inputValue').value);
+        const type = document.getElementById('unitType').value;
+        let res = 0;
+        
+        if (isNaN(val)) {
+            document.getElementById('resultText').innerHTML = "Enter a Number";
+            return;
+        }
+
+        if (type === "C") {
+            res = (val * 9/5) + 32;
+            document.getElementById('resultText').innerHTML = res.toFixed(2) + " °F";
+        } else {
+            res = (val - 32) * 5/9;
+            document.getElementById('resultText').innerHTML = res.toFixed(2) + " °C";
+        }
+    }
+</script>
+</body>
+</html>
